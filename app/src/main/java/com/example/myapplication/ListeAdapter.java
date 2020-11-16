@@ -1,10 +1,16 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +43,16 @@ public class ListeAdapter extends  ArrayAdapter<Equipe> {
         tvTitre1.setText(uneEquipe.getName());
         tvTitre2.setText(uneEquipe.getWording());
 
+        AssetManager manager = context.getAssets();
+        InputStream open = null;
 
+        try {
+            open = manager.open(uneEquipe.getImage());
+            Bitmap bitmap = BitmapFactory.decodeStream(open);
+            imageView.setImageBitmap(bitmap);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return view;
     }
 }

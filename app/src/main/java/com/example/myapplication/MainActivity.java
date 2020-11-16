@@ -27,4 +27,12 @@ public class MainActivity extends AppCompatActivity {
         lvListe = (ListView)findViewById(R.id.ListView1);
 
     }
+
+    @Override
+    protected  void onResume() {
+        super.onResume();
+        ListeAdapter listeAdapter = new ListeAdapter(this, listEquipe);
+        lvListe.setAdapter(listeAdapter);
+    }
+
 }
